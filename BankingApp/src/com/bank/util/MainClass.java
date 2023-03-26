@@ -2,14 +2,21 @@ package com.bank.util;
 
 import java.util.Scanner;
 
+import com.bank.oparation.Oparations;
+
 public class MainClass
 {
 	public static void main(String[] args)
 	{
-		Scanner scanner = null;
+		start();
+	}
+
+	public static void start()
+	{
+		Scanner sc = null;
 		try
 		{
-			scanner = new Scanner(System.in);
+			sc = new Scanner(System.in);
 
 			System.out.println("Welcome to XYZ Bank");
 			System.out.println("---------------------");
@@ -18,24 +25,46 @@ public class MainClass
 			System.out.println("Press 3 to cash withdraw");
 			System.out.println("==========================");
 			System.out.println("Enter Your choise");
-			int choise = scanner.nextInt();
+			int choise = sc.nextInt();
 
 			switch (choise)
 			{
 			case 1:
 				System.out.println("check balance");
+				System.out.println("=============");
+				System.out.println("Enter Account Number");
+				int accNo = sc.nextInt();
+				System.out.println(Oparations.checkBalance(accNo));
 				break;
 
 			case 2:
 				System.out.println("cash deposit");
+				System.out.println("=============");
+				System.out.println("Enter Account Number");
+				int accNo1 = sc.nextInt();
+
+				System.out.println("Enter Amount ");
+				int amount1 = sc.nextInt();
+
+				System.out.println(Oparations.depositBalance(accNo1, amount1));
+
 				break;
 
 			case 3:
 				System.out.println("cash withdraw");
+				System.out.println("=============");
+				System.out.println("Enter Account Number");
+				int accNo2 = sc.nextInt();
+
+				System.out.println("Enter Amount ");
+				int amount2 = sc.nextInt();
+
+				System.out.println(Oparations.withdrawlBalance(accNo2, amount2));
 				break;
 
 			default:
 				System.out.println("Trying to Exit");
+				MainClass.start();
 				break;
 			}
 
@@ -47,9 +76,8 @@ public class MainClass
 		}
 		finally
 		{
-			scanner.close();
+			sc.close();
 		}
-
 	}
 
 }
